@@ -14,8 +14,13 @@ chairs = 0
 table_number = 1
 table_assignments = factorial(n)
 while chairs < n:
-    r = int(input("Enter the number of chairs at table %d\n" % table_number))
+    r = int(input("Enter the number of chairs at table %d\n" % table_number)) 
     chairs += r
     table_number += 1
-    table_assignments = table_assignments / factorial(r)
+    if n - chairs < 0: # not enough people in all chairs
+        c = n - chairs
+        print("Seating only %d people at table %d" % (c+r, table_number-1))
+        table_assignments = table_assignments / factorial(c+r)
+    else:
+        table_assignments = table_assignments / factorial(r)
 print("The number of table assignments is %d" % table_assignments)
